@@ -1,32 +1,30 @@
 package com.gmail.u2.hamaguchi.shakyo.tdd.money
 
-import jdk.internal.org.objectweb.asm.tree.FrameNode
-import org.amshove.kluent.shouldEqual
-import org.amshove.kluent.shouldNotEqual
 import org.junit.Test
+import org.amshove.kluent.*
 
 class MoneyTest {
     @Test
     fun ドルに対し乗算できる() {
-        val five = Dollar(5)
-        five.times(2) shouldEqual Dollar(10)
-        five.times(3) shouldEqual Dollar(15)
+        val five: Money = Money.dollar(5)
+        five.times(2) shouldEqual Money.dollar(10)
+        five.times(3) shouldEqual Money.dollar(15)
     }
 
     @Test
     fun 金額の等価性を確認出来る() {
-        Dollar(5) shouldEqual Dollar(5)
-        Dollar(5) shouldNotEqual  Dollar(6)
-        Franc(5) shouldEqual Franc(5)
-        Franc(5) shouldNotEqual  Franc(6)
-        Franc(5) shouldNotEqual  Dollar(5)
+        Money.dollar(5) shouldEqual Money.dollar(5)
+        Money.dollar(5) shouldNotEqual  Money.dollar(6)
+        Money.franc(5) shouldEqual Money.franc(5)
+        Money.franc(5) shouldNotEqual  Money.franc(6)
+        Franc(5) shouldNotEqual Money.dollar(5)
     }
 
     @Test
     fun フランに対し乗算できる() {
-        val five = Franc(5)
-        five.times(2) shouldEqual Franc(10)
-        five.times(3) shouldEqual Franc(15)
+        val five = Money.franc(5)
+        five.times(2) shouldEqual Money.franc(10)
+        five.times(3) shouldEqual Money.franc(15)
     }
 
 }
